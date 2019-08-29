@@ -750,7 +750,7 @@ class RestAPI:
             self.raiden_api.channel_open(
                 registry_address,
                 token_address,
-                to_canonical_address(rns_resolved_address),
+                to_canonical_address(partner_rns_address),
                 settle_timeout,
             )
         except (InvalidAddress, InvalidSettleTimeout, SamePeerAddress,

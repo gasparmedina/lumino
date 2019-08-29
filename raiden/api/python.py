@@ -91,6 +91,8 @@ from raiden.billing.invoices.encoder.invoice_encoder import parse_options, encod
 from raiden.billing.invoices.decoder.invoice_decoder import decode_invoice
 from raiden.utils import random_secret, sha3
 
+# from raiden.network.proxies.token_network import
+
 log = structlog.get_logger(__name__)  # pylint: disable=invalid-name
 
 EVENTS_PAYMENT_HISTORY_RELATED = (
@@ -790,6 +792,14 @@ class RaidenAPI:
         else:
             result = views.list_all_channelstate(chain_state=views.state_from_raiden(self.raiden))
 
+        # channel_proxy = raiden.chain.payment_channel(
+        #     canonical_identifier=CanonicalIdentifier(
+        #         chain_identifier=chain_state.chain_id,
+        #         token_network_address=channel_close_event.token_network_identifier,
+        #         channel_identifier=channel_close_event.channel_identifier,
+        #     )
+        # )
+        # print("ONCHAIN LOCKS ROOT" + result[0].our_state.onchain_locksroot.hex())
         return result
 
 

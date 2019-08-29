@@ -74,8 +74,8 @@ class AddressRnsField(fields.Field):
     }
 
     def _deserialize(self, value, attr, data):
-        if not is_rns_address(value):
-            self.fail('missing_dot')
+        # if not is_rns_address(value):
+        # self.fail('missing_dot')
 
         return value
 

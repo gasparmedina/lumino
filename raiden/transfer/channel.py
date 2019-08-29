@@ -549,7 +549,9 @@ def valid_lockedtransfer_check(
     storage
 ) -> MerkletreeOrError:
 
-    handle_invoice_result = handle_received_invoice(storage, payment_hash_invoice)
+    handle_invoice_result = None
+    if storage is not None:
+        handle_invoice_result = handle_received_invoice(storage, payment_hash_invoice)
 
     current_balance_proof = get_current_balanceproof(sender_state)
     merkletree = compute_merkletree_with(sender_state.merkletree, lock.lockhash)

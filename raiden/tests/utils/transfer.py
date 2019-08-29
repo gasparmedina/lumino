@@ -45,6 +45,7 @@ from raiden.utils.typing import (
     TokenNetworkID,
 )
 
+from raiden.constants import EMPTY_PAYMENT_HASH_INVOICE
 
 class TransferState(Enum):
     """ Represents the target state of a transfer. """
@@ -538,10 +539,12 @@ def make_receive_transfer_mediated(
     transfer_target = make_address()
     transfer_initiator = make_address()
     chain_id = chain_id or channel_state.chain_id
+    payment_hash_invoice = EMPTY_PAYMENT_HASH_INVOICE
     mediated_transfer_msg = LockedTransfer(
         chain_id=chain_id,
         message_identifier=random.randint(0, UINT64_MAX),
         payment_identifier=payment_identifier,
+        payment_hash_invoice=payment_hash_invoice,
         nonce=nonce,
         token_network_address=channel_state.token_network_identifier,
         token=channel_state.token_address,
@@ -561,6 +564,7 @@ def make_receive_transfer_mediated(
     receive_lockedtransfer = LockedTransferSignedState(
         random.randint(0, UINT64_MAX),
         payment_identifier,
+        payment_hash_invoice,
         channel_state.token_address,
         balance_proof,
         lock,

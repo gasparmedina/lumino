@@ -1291,7 +1291,7 @@ def test_channelstate_unlock_unlocked_onchain():
         channel_state, privkey2, nonce, transferred_amount, lock
     )
 
-    is_valid, _, msg = channel.handle_receive_lockedtransfer(channel_state, receive_lockedtransfer)
+    is_valid, _, msg, _ = channel.handle_receive_lockedtransfer(channel_state, receive_lockedtransfer, None)
     assert is_valid, msg
 
     channel.register_onchain_secret(

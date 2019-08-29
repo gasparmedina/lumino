@@ -709,6 +709,8 @@ class RaidenService(Runnable):
     def _handle_event(self, chain_state: ChainState, raiden_event: RaidenEvent):
         assert isinstance(chain_state, ChainState)
         assert isinstance(raiden_event, RaidenEvent)
+        # print("Raiden Event")
+        # print(raiden_event)
         try:
             self.raiden_event_handler.on_raiden_event(
                 raiden=self, chain_state=chain_state, event=raiden_event
@@ -858,8 +860,10 @@ class RaidenService(Runnable):
                 target = transfer.target
                 identifier = transfer.payment_identifier
                 balance_proof = transfer.balance_proof
+                payment_hash_invoice = transfer.payment_hash_invoice
                 self.targets_to_identifiers_to_statuses[target][identifier] = PaymentStatus(
                     payment_identifier=identifier,
+                    payment_hash_invoice=payment_hash_invoice,
                     amount=transfer_description.amount,
                     token_network_identifier=TokenNetworkID(
                         balance_proof.token_network_identifier

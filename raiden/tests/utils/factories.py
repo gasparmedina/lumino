@@ -64,6 +64,7 @@ from raiden.utils.typing import (
     Nonce,
     Optional,
     PaymentID,
+    PaymentHashInvoice,
     PaymentNetworkID,
     Secret,
     SecretHash,
@@ -409,6 +410,7 @@ NettingChannelStateProperties.DEFAULTS = NettingChannelStateProperties(
 class TransferDescriptionProperties(Properties):
     payment_network_identifier: PaymentNetworkID = EMPTY
     payment_identifier: PaymentID = EMPTY
+    payment_hash_invoice: PaymentHashInvoice = EMPTY
     amount: TokenAmount = EMPTY
     token_network_identifier: TokenNetworkID = EMPTY
     initiator: InitiatorAddress = EMPTY

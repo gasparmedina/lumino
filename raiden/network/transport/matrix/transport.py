@@ -529,6 +529,9 @@ class MatrixTransport(Runnable):
             queue_identifier=queue_identifier,
         )
 
+        print("Send Message Async")
+        print(message.to_dict())
+
         self._send_with_retry(queue_identifier, message)
 
     def send_global(self, room: str, message: Message) -> None:
